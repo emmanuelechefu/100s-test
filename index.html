@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>100s Test</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css"/>
+</head>
+<body>
+  <div id="app">
+    <!-- Header / Icons -->
+    <header class="topbar">
+      <div id="highscoreBar">HIGHSCORE: <span id="highscoreValue"> </span></div>
+      <div class="icons">
+        <button class="icon-btn" id="leaderboardIcon" title="Leaderboards">🏆</button>
+        <button class="icon-btn" id="settingsIcon" title="Settings">⚙️</button>
+      </div>
+    </header>
+
+    <!-- Main Menu -->
+    <section id="view-menu" class="view active">
+      <h1 class="title"><span class="accent">100s</span> Test</h1>
+      <div class="menu-buttons">
+        <button id="btn-100s" class="pill-btn primary">100s Mode</button>
+        <button id="btn-ta" class="pill-btn">Time Attack Mode</button>
+        <button id="btn-practice" class="pill-btn">Practice</button>
+      </div>
+    </section>
+
+    <!-- Generic Setup Screen (used for all 3 modes) -->
+    <section id="view-setup" class="view">
+      <h2 id="setupTitle">Setup</h2>
+
+      <!-- Time selector (only visible for TA) -->
+      <div id="timeRow" class="time-row hidden">
+        <label>Set Time</label>
+        <input id="timeInput" class="time-input" value="00:30" maxlength="5" />
+      </div>
+
+      <div class="ops-grid">
+        <label class="op">Addition
+          <input type="checkbox" id="opAdd" checked>
+          <span class="check"></span>
+        </label>
+        <label class="op">Subtraction
+          <input type="checkbox" id="opSub" checked>
+          <span class="check"></span>
+        </label>
+        <label class="op">Multiplication
+          <input type="checkbox" id="opMul" checked>
+          <span class="check"></span>
+        </label>
+        <label class="op">Division
+          <input type="checkbox" id="opDiv" checked>
+          <span class="check"></span>
+        </label>
+      </div>
+
+      <div class="actions">
+        <button id="startGame" class="pill-btn big">START</button>
+        <button id="backToMenu" class="pill-btn red small">BACK</button>
+      </div>
+    </section>
+
+    <!-- Countdown + Game -->
+    <section id="view-game" class="view">
+      <button id="quitGame" class="pill-btn red small quit">QUIT</button>
+
+      <div class="hud">
+        <div class="timer" id="timerBubble">00:00</div>
+        <div class="qnum" id="questionNumber"></div>
+      </div>
+
+      <div class="countdown hidden" id="countdown">3</div>
+
+      <div class="question-box" id="questionBox">1 × 1</div>
+
+      <div class="answer-row">
+        <input type="text" id="answerInput" class="answer-input" autocomplete="off" inputmode="numeric" />
+      </div>
+    </section>
+
+    <!-- End Screen -->
+    <section id="view-end" class="view">
+      <h2 id="endTitle">YOUR TIME:</h2>
+      <div class="timer result" id="endValue">00:00</div>
+      <div class="actions">
+        <button id="replayBtn" class="pill-btn small">Replay</button>
+        <button id="quitToMenuBtn" class="pill-btn red small">QUIT</button>
+      </div>
+    </section>
+
+    <!-- Leaderboard Menu -->
+    <section id="view-lb-menu" class="view">
+      <h2 class="lb-title">LEADERBOARD</h2>
+      <div class="lb-menu">
+        <button data-lb="hundreds" class="pill-btn">100s Mode Rankings</button>
+        <button data-lb="ta30" class="pill-btn">30s TAM Rankings</button>
+        <button data-lb="ta60" class="pill-btn">1min TAM Rankings</button>
+      </div>
+      <div class="actions">
+        <button id="lbBack" class="pill-btn red small">BACK</button>
+      </div>
+    </section>
+
+    <!-- Leaderboard View -->
+    <section id="view-lb" class="view">
+      <button id="lbBack2" class="pill-btn red small back">BACK</button>
+      <h2 id="lbHeading" class="lb-title">Leaderboard</h2>
+      <div class="lb-note" id="lbNote">Top 100 scores of users</div>
+      <table class="lb-table">
+        <thead><tr><th>Rank</th><th>Username</th><th id="lbScoreHead">Time</th></tr></thead>
+        <tbody id="lbBody"></tbody>
+      </table>
+    </section>
+
+    <!-- Settings -->
+    <section id="view-settings" class="view">
+      <button id="settingsBack" class="pill-btn red small back">BACK</button>
+      <h2 class="lb-title">Settings</h2>
+      <div class="settings">
+        <label>Username
+          <input type="text" id="usernameInput" placeholder="Enter a name..." maxlength="16">
+        </label>
+        <label class="inline">
+          <input type="checkbox" id="clearOnIncorrect" checked>
+          Clear input on incorrect answer
+        </label>
+        <label class="inline">
+          <input type="checkbox" id="sfxToggle" checked>
+          Sound effects
+        </label>
+      </div>
+    </section>
+  </div>
+
+  <script src="./sounds.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
